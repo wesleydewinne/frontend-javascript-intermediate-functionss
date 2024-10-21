@@ -9,7 +9,15 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
-
+function getEmailDomain(emailaddress) {
+    const atSign = emailaddress.indexOf('@');
+    const domain = emailaddress.substring(atSign + 1);
+    return domain;
+}
+const domainOne = getEmailDomain("n.eeken@novi-education.nl");
+const domainTwo = getEmailDomain("t.mellink@novi.nl");
+const domainThree = getEmailDomain("a.wiersma@outlook.com");
+console.log(domainOne, domainTwo, domainThree);
 
 
 /* Opdracht  2 */
@@ -20,7 +28,22 @@
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
 
-
+function typeOfEmail(emailaddress){
+    const adSing = emailaddress.indexOf('@');
+    const domain = emailaddress.substring(adSing + 1)
+    switch(domain){
+        case "novi-education.nl":
+            return 'Student';
+        case "novi.nl":
+            return 'Medewerker';
+        default:
+            return 'Extern';
+    }
+}
+const typeOne = typeOfEmail("n.eeken@novi-education.nl")
+const typeTwo = typeOfEmail("t.mellink@novi.nl")
+const typeThree = typeOfEmail("novi.nlaapjesk@outlook.com")
+console.log(typeOne, typeTwo, typeThree);
 
 /* Opdracht  3 */
 // Schrijf een functie genaamd checkEmailValidity, die een emailadres verwacht en checkt of het emailadres valide is. De functie returned true of false, afhankelijk van de uitkomst.
@@ -28,6 +51,25 @@
 // * Er een @ in voorkomt
 // * Er géén , in voorkomt
 // * Er géén . in voorkomt als allerlaatste karakter (dus hotmail.com is valide, net als outlook.nl, maar outlooknl. niet)
+
+function checkEmailValidity(emailaddress) {
+    const containsAdSing = emailaddress.includes('@');
+    const containsComma = emailaddress.includes(',');
+    const indexOfLastDot = emailaddress.lastIndexOf('.');
+    const containsDot = indexOfLastDot !== emailaddress.length - 1;
+    if (containsAdSing && !containsComma && containsDot) {
+        return true;
+    } else {
+        return false;
+    }
+}
+const validOne = checkEmailValidity("n.eeken@novi.nl");
+const validTwo = checkEmailValidity("tessmellink@novi.nl");
+const validThree = checkEmailValidity("n.eekenanovi.nl");
+const validFour = checkEmailValidity("n.eeken@novinl.");
+const validFive = checkEmailValidity("tessmellink@novi,nl");
+console.log(validOne, validTwo, validThree, validFour, validFive);
+
 // ---- Verwachte uitkomsten:
 // checkEmailValidity("n.eeken@novi.nl") geeft true - want @ en punt op de juiste plek
 // checkEmailValidity("tessmellink@novi.nl") geeft true - want @ en punt op de juiste plek
