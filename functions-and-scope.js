@@ -109,13 +109,38 @@ console.log(averageOne.toFixed(2));
 // * Hoe zorgt ik ervoor dat wanneer ik een cijfer tegenkom die aan de conditie voldoet, ik dit ergens kan opslaan?
 // Log het antwoord in de terminal.
 
+let highest = 0;
+for (let i = 0; i < grades.length; i++) {
+    if (grades[i] > highest) {
+        highest = grades[i];
+    }
+}
+console.log(highest);
+
 // ---- Verwachte uitkomst: 9
+
 
 
 /* 3b: Omschrijven tot een herbruikbare functie */
 // Schrijf een functie genaamd highestGrade, die een array van cijfers verwacht (zoals grades) en het hoogste cijfer teruggeeft. Gebruik hiervoor jouw antwoord van 3a.
 // Zorg ervoor dat jouw functie ook werkt als we een andere array willen checken, zoals bijvoorbeeld: [6, 4, 5] of [8, 9, 4, 6, 10].
 // Log het antwoord in de terminal.
+
+function highestGrade(gradesArray) {
+    let highest = 0;
+    for (let i = 0; i < gradesArray.length; i++) {
+        // als de huidige waarde van grades (grades[i]) hoger is dan mijn huidige opgeslagen waarde
+        // sla dan dat nieuwe cijfer op als hoogste waarde!
+        if (gradesArray[i] > highest) {
+            highest = gradesArray[i];
+        }
+    }
+    return highest;
+}
+const highestOne = highestGrade(grades);
+const highestTwo = highestGrade([6, 4, 5]);
+const highestThree = highestGrade([8, 9, 4, 6, 10]);
+console.log(highestOne, highestTwo, highestThree);
 
 // ---- Verwachte uitkomsten:
 // highestGrade(grades) geeft 9
